@@ -1,0 +1,110 @@
+.home {
+    padding: 0px 10px;
+    padding-bottom: 100px;
+}
+
+.hero{
+    max-width: 600px;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+}
+
+.hero h2 {
+    font-size: max(4vw, 36px);
+}
+
+.hero p{
+    width: 75%;
+    color: #e3e3e3;
+    line-height: 1.5;
+}
+
+.hero form{
+    padding: 8px;
+    width: 80%;
+    background-color: white;
+    border-radius: 30px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero input {
+    flex: 1;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+}
+
+.hero button{
+    border: none;
+    background: #025CD5;
+    color: white;
+    font-size: 16px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.crypto-table {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    border-radius: 20px;
+    color: black;
+}
+
+.table-layout {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1.5fr 0.5fr;
+    padding: 15px 20px;
+    align-items: center;
+    border-bottom: 1px solid #3c3c3c;
+}
+
+.market-cap{
+    text-align: center;
+}
+
+.table-layout:last-child{
+    border: none;
+}
+
+.table-layout div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.table-layout img{
+    width: 35px;
+}
+
+.table-layout .green{
+    color: rgb(0, 255, 76);
+    text-align: center;
+}
+
+.table-layout .red{
+    color: rgb(255, 0, 0);
+    text-align: center;
+}
+
+.table-layout .fav{
+    text-align: right;
+}
+
+.ri-star-line{
+    text-align: center;
+}
+
+#coinlist{
+    background-color: white;
+}
