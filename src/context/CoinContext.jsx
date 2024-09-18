@@ -4,7 +4,7 @@ export const CoinContext = createContext();
 
 const CoinContextProvider = (props)=>{
 
-    const API_KEY = 'CG-HCRL45hnDUERJDAXVRPnrfUy'
+    const API_KEY = 'CG-AnAAxVvq1JrdTrybwprhcwCr'
 
     const [allCoin, setAllCoin] = useState([]);
     const [currency, setCurrency] = useState({

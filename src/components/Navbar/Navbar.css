@@ -22,7 +22,7 @@ li{
 
 .navbar select {
     padding: 5px 8px;
-    border-radius: 6px;
+    border-radius: 20px;
     border: 2px solid white;
     background: transparent;
     color: white;
@@ -31,4 +31,28 @@ li{
 .navbar option{
     background-color: #0673A7;
     color: white;
+}
+
+@media(max-width: 900px){
+    .navbar{
+        padding: 20px 8%;
+    }
+
+    .navbar button{
+        gap: 8px;
+        padding: 8px 18px;
+        font-size: 14px;
+    }
+}
+
+@media(max-width: 768px){
+    .navbar{
+        padding: 20px 5%;
+    }
+
+    .navbar button {
+        gap: 8px;
+        padding: 8px 18px;
+        font-size: 14px;
+    }
 }
