@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Home.css";
-import { CoinContext } from "../../context/CoinContext";
-import ChartModal from "../../components/ChartModal";
+import { CoinContext } from "./context/CoinContext";
+import ChartModal from "./components/ChartModal";
 import debounce from 'lodash/debounce'; 
 
 const Home = () => {
