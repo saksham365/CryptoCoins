@@ -115,11 +115,11 @@ button {
 }
   
 button.favorite i {
-    color: gold; /* Or any color to indicate favorite */
+    color: gold; 
 }
   
 button i {
-    font-size: 1.2rem; /* Adjust size as needed */
+    font-size: 1.2rem; 
 }
   
 .form{
@@ -160,11 +160,11 @@ button i {
   }
   
   .sort-arrow.asc {
-    border-bottom: 5px solid #000; /* Arrow pointing down */
+    border-bottom: 5px solid #000; 
   }
   
   .sort-arrow.desc {
-    border-top: 5px solid #000; /* Arrow pointing up */
+    border-top: 5px solid #000; 
   }
   
   

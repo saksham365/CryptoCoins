@@ -1,18 +1,17 @@
-/* Styles for the modal and overlay */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.7); 
     z-index: 1000;
   }
   
   .chart-modal {
     background: #fff;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 20px;
     max-width: 600px;
     margin: 50px auto;
     text-align: center;
@@ -23,15 +22,15 @@
   .day-selector button {
     margin: 5px;
     padding: 8px 12px;
-    background-color: #008cba;
+    background-color: #025CD5;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 20px;
   }
   
   .day-selector button:hover {
-    background-color: #005f73;
+    background-color: #025CD5;
   }
   
   .chart-container {
@@ -42,15 +41,34 @@
   .buttons {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #008cba;
+    background-color: #025CD5;
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
   }
   
   .buttons:hover {
-    background-color: #005f73;
+    background-color: #025CD5;
+  }
+
+  .close{
+    background-color: red;
+    padding: 10px;
+    border-radius: 20px;
+    color: white;
+  }
+
+  @media(max-width:768px){
+    .chart-modal{
+      max-width: 500px;
+    }
+  }
+
+  @media(max-width:500px){
+    .chart-modal{
+      max-width: 380px;
+    }
   }
 
 

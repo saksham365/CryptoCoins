@@ -18,17 +18,16 @@ const Home = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedCoin, setSelectedCoin] = useState(null);
 
-  // Debounced search function
   const debouncedSearch = debounce(async (searchInput) => {
     const coins = allCoin.filter((item) => {
       return item.name.toLowerCase().includes(searchInput.toLowerCase());
     });
     setDisplayCoin(coins);
-  }, 1000); // Debounce delay
+  }, 1000); 
 
   const inputHandler = (event) => {
     setInput(event.target.value);
-    debouncedSearch(event.target.value); // Call debounced search
+    debouncedSearch(event.target.value); 
   };
 
   useEffect(() => {
@@ -130,7 +129,7 @@ const Home = () => {
           >
             <button
               onClick={(e) => {
-                e.stopPropagation(); // Prevent row click from firing
+                e.stopPropagation(); 
                 toggleFavorite(item.id);
               }}
               className={favorites.includes(item.id) ? 'favorite' : ''}
