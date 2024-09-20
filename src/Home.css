@@ -166,6 +166,44 @@ button i {
   .sort-arrow.desc {
     border-top: 5px solid #000; 
   }
+
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  
+  .pagination-controls button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination-controls button:disabled {
+    background-color: #313030;
+    cursor: not-allowed;
+  }
+  
+  .pagination-controls button:hover:enabled {
+    background-color: #0056b3;
+  }
+  
+  
+  .pagination-controls span {
+    margin: 0 10px;
+    font-size: 1rem;
+    color: #ffffff;
+  }
+  
   
   
 
@@ -194,5 +232,4 @@ button i {
         width: 100px;
     }
 }
-
 
