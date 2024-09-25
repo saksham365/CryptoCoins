@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import "./Home.css";
 import { CoinContext } from "./context/CoinContext";
 import ChartModal from "./components/ChartModal";
-import debounce from "lodash/debounce";
 
 const Home = () => {
   const { allCoin, currency } = useContext(CoinContext);
@@ -19,32 +18,70 @@ const Home = () => {
   const [selectedCoin, setSelectedCoin] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const coinsPerPage = 10; 
+  const coinsPerPage = 10;
 
-  const debouncedSearch = debounce((searchInput) => {
-    if (!searchInput) {
-      setDisplayCoin(allCoin); 
-    } else {
-      const coins = allCoin.filter((item) => {
-        const priceString = item.current_price.toString(); 
-        return (
-          item.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-          priceString.includes(searchInput) 
-        );
-      });
-      setDisplayCoin(coins);
-    }
-    setCurrentPage(1); 
-  }, 500);
+  const [coinsPerPageData, setCoinsPerPageData] = useState({});
+
+  const searchTimeoutRef = useRef(null);
 
   const inputHandler = (event) => {
-    setInput(event.target.value);
-    debouncedSearch(event.target.value);
+    const searchValue = event.target.value;
+    setInput(searchValue);
+
+    
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
+    }
+
+    searchTimeoutRef.current = setTimeout(() => {
+      if (!searchValue) {
+        setDisplayCoin(allCoin); 
+      } else {
+        const filteredCoins = allCoin.filter((item) => {
+          const priceString = item.current_price.toString();
+          return (
+            item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+            priceString.includes(searchValue)
+          );
+        });
+        setDisplayCoin(filteredCoins);
+      }
+      setCurrentPage(1);
+    }, 500);
   };
 
   useEffect(() => {
-    setDisplayCoin(allCoin);
+    if (displayCoin.length === 0) {
+      setDisplayCoin(allCoin);
+    }
   }, [allCoin]);
+
+  useEffect(() => {
+    initializeCoinsData();
+  }, [displayCoin, favorites]);
+
+  const initializeCoinsData = () => {
+    const top50Coins = displayCoin.slice(0, 50);
+    const favoriteCoins = top50Coins.filter((coin) => favorites.includes(coin.id));
+    const otherCoins = top50Coins.filter((coin) => !favorites.includes(coin.id));
+
+    setCoinsPerPageData((prev) => ({
+      ...prev,
+      [1]: [...favoriteCoins, ...otherCoins.slice(0, coinsPerPage - favoriteCoins.length)],
+    }));
+
+    const totalOtherPages = Math.ceil(otherCoins.length / coinsPerPage);
+    for (let i = 2; i <= totalOtherPages + 1; i++) {
+      const indexOfLastCoin = i * coinsPerPage;
+      const indexOfFirstCoin = indexOfLastCoin - coinsPerPage;
+
+      const currentOtherCoins = otherCoins.slice(indexOfFirstCoin, indexOfLastCoin);
+      setCoinsPerPageData((prev) => ({
+        ...prev,
+        [i]: currentOtherCoins,
+      }));
+    }
+  };
 
   const toggleFavorite = (coinId) => {
     setFavorites((prevFavorites) => {
@@ -69,38 +106,32 @@ const Home = () => {
     setSelectedCoin(null);
   };
 
-  const sortedDisplayCoin = displayCoin.sort((a, b) => {
-    if (favorites.includes(a.id) && !favorites.includes(b.id)) return -1;
-    if (!favorites.includes(a.id) && favorites.includes(b.id)) return 1;
+  const currentCoins = coinsPerPageData[currentPage] || [];
 
-    const aValue =
-      sortCriteria === "name"
-        ? a.name
-        : sortCriteria === "price"
-        ? a.current_price
-        : a.market_cap_rank;
-    const bValue =
-      sortCriteria === "name"
-        ? b.name
-        : sortCriteria === "price"
-        ? b.current_price
-        : b.market_cap_rank;
+  const sortCoins = (criteria) => {
+    const favoriteCoins = currentCoins.filter((coin) => favorites.includes(coin.id));
+    const otherCoins = currentCoins.filter((coin) => !favorites.includes(coin.id));
 
-    if (sortDirection === "asc") {
-      return aValue > bValue ? 1 : aValue < bValue ? -1 : 0;
-    } else {
-      return aValue < bValue ? 1 : aValue > bValue ? -1 : 0;
-    }
-  });
+    const sortedOtherCoins = [...otherCoins].sort((a, b) => {
+      const aValue = criteria === "name" ? a.name.toLowerCase() : a.current_price;
+      const bValue = criteria === "name" ? b.name.toLowerCase() : b.current_price;
 
-  // Pagination logic
-  const top50Coins = sortedDisplayCoin.slice(0, 50); 
+      return sortDirection === "asc" ? (aValue > bValue ? 1 : -1) : (aValue < bValue ? 1 : -1);
+    });
 
-  const indexOfLastCoin = currentPage * coinsPerPage;
-  const indexOfFirstCoin = indexOfLastCoin - coinsPerPage;
-  const currentCoins = top50Coins.slice(indexOfFirstCoin, indexOfLastCoin); 
+    const sortedCoins = [...favoriteCoins, ...sortedOtherCoins];
 
-  const totalPages = Math.ceil(top50Coins.length / coinsPerPage); 
+    setCoinsPerPageData((prev) => ({
+      ...prev,
+      [currentPage]: sortedCoins,
+    }));
+  };
+
+  const totalPages = Math.min(5, Math.ceil(displayCoin.length / coinsPerPage));
+
+  const getVisiblePages = () => {
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  };
 
   const nextPage = () => {
     if (currentPage < totalPages) {
@@ -112,6 +143,10 @@ const Home = () => {
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
     }
+  };
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
@@ -126,7 +161,6 @@ const Home = () => {
           id="form"
           onSubmit={(e) => {
             e.preventDefault();
-            debouncedSearch(input);
           }}
         >
           <input
@@ -136,7 +170,7 @@ const Home = () => {
             placeholder="Search crypto..."
             required
           />
-          <button type="submit">Search</button>{" "}
+          <button type="submit">Search</button>
         </form>
       </div>
 
@@ -151,6 +185,7 @@ const Home = () => {
               onClick={() => {
                 setSortCriteria("name");
                 setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+                sortCoins("name");
               }}
             >
               <span
@@ -167,6 +202,7 @@ const Home = () => {
               onClick={() => {
                 setSortCriteria("price");
                 setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+                sortCoins("price");
               }}
             >
               <span
@@ -219,13 +255,23 @@ const Home = () => {
       </div>
 
       <div className="pagination-controls">
-        <button onClick={prevPage} disabled={currentPage === 1}>
+        <button className="prev" onClick={prevPage} disabled={currentPage === 1}>
           Previous
         </button>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-        <button onClick={nextPage} disabled={currentPage === totalPages}>
+
+        <div className="page-numbers">
+          {getVisiblePages().map((pageNumber) => (
+            <button
+              key={pageNumber}
+              onClick={() => handlePageClick(pageNumber)}
+              className={currentPage === pageNumber ? "active-page" : ""}
+            >
+              {pageNumber}
+            </button>
+          ))}
+        </div>
+
+        <button className="next" onClick={nextPage} disabled={currentPage === totalPages}>
           Next
         </button>
       </div>
@@ -240,4 +286,3 @@ const Home = () => {
 };
 
 export default Home;
-
