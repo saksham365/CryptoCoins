@@ -168,6 +168,7 @@ button i {
   }
 
 
+/* Pagination Controls */
 .pagination-controls {
     display: flex;
     justify-content: center;
@@ -175,33 +176,72 @@ button i {
     margin-top: 20px;
   }
   
-  
   .pagination-controls button {
-    padding: 10px 15px;
+    padding: 8px 12px;
     margin: 0 5px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
     border-radius: 20px;
-    font-size: 1rem;
+    color: #333;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .pagination-controls button:hover {
+    background-color: #ddd;
   }
   
   .pagination-controls button:disabled {
-    background-color: #313030;
+    background-color: #eee;
     cursor: not-allowed;
   }
   
-  .pagination-controls button:hover:enabled {
-    background-color: #0056b3;
+  /* Page Numbers Styling */
+  .page-numbers {
+    display: flex;
+    gap: 5px;
   }
   
+  .page-numbers button {
+    padding: 8px 12px;
+    margin: 0 2px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
   
-  .pagination-controls span {
-    margin: 0 10px;
-    font-size: 1rem;
-    color: #ffffff;
+  .page-numbers button:hover {
+    background-color: #ddd;
+  }
+  
+  .page-numbers button.active-page {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+  
+  /* Media Queries for Responsive Pagination */
+  @media (max-width: 768px) {
+    .pagination-controls {
+      flex-direction: column;
+    }
+  
+    .page-numbers {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .page-numbers button {
+      margin-bottom: 5px;
+    }
+    .prev{
+      display: none;
+    }
+    .next{
+      display: none;
+    }
   }
   
   
@@ -232,4 +272,3 @@ button i {
         width: 100px;
     }
 }
-
