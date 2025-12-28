@@ -1,0 +1,288 @@
+.coin-details-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+    color: var(--text-color, inherit);
+    padding-bottom: 80px;
+}
+
+/* Header Card */
+.coin-header-card {
+    background: var(--card-bg, #fff);
+    border: 1px solid var(--border-color, #eee);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.header-left img {
+    width: 48px;
+    height: 48px;
+}
+
+.header-left h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-left .symbol {
+    color: #888;
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+
+.price-tag {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.change {
+    font-size: 1rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.change.up {
+    color: #16c784;
+    background-color: rgba(22, 199, 132, 0.1);
+}
+
+.change.down {
+    color: #ea3943;
+    background-color: rgba(234, 57, 67, 0.1);
+}
+
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+@media(max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Cards Generic */
+.chart-card,
+.news-card,
+.info-card,
+.stats-list-card,
+.sentiment-card,
+.footer-buy-card {
+    background: var(--card-bg, #fff);
+    border: 1px solid var(--border-color, #eee);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.main-column>div:last-child,
+.sidebar-column>div:last-child {
+    margin-bottom: 0;
+}
+
+h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Chart Section */
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.time-toggles button {
+    background: none;
+    border: 1px solid var(--border-color, #ddd);
+    padding: 6px 12px;
+    margin-left: -1px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.time-toggles button:first-child {
+    border-radius: 6px 0 0 6px;
+}
+
+.time-toggles button:last-child {
+    border-radius: 0 6px 6px 0;
+}
+
+.time-toggles button.active {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.chart-canvas {
+    height: 400px;
+}
+
+/* Stats List */
+.stats-list-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stats-list-card li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color, #eee);
+}
+
+.stats-list-card li:last-child {
+    border-bottom: none;
+}
+
+.stats-list-card .label {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.stats-list-card .value {
+    font-weight: 600;
+}
+
+/* Dashboard Gauge (Simplified) */
+.gauge-container {
+    position: relative;
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.gauge {
+    width: 200px;
+    height: 100px;
+    background: #eee;
+    border-radius: 100px 100px 0 0;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.gauge-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #16c784;
+    /* Green */
+    transform-origin: bottom center;
+    transform: rotate(0deg);
+    transition: transform 1s ease-out;
+}
+
+.gauge-cover {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    top: 20px;
+    background: var(--card-bg, #fff);
+    border-radius: 100px 100px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.gauge-cover span {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.sentiment-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+
+/* Dark Theme Overrides */
+[data-theme='dark'] .coin-header-card,
+[data-theme='dark'] .chart-card,
+[data-theme='dark'] .news-card,
+[data-theme='dark'] .info-card,
+[data-theme='dark'] .stats-list-card,
+[data-theme='dark'] .sentiment-card,
+[data-theme='dark'] .footer-buy-card {
+    background: #1e1e1e;
+    border-color: #333;
+}
+
+[data-theme='dark'] .header-left .symbol {
+    color: #aaa;
+}
+
+[data-theme='dark'] .change.up {
+    color: #16c784;
+    background-color: rgba(22, 199, 132, 0.2);
+}
+
+[data-theme='dark'] .change.down {
+    color: #ea3943;
+    background-color: rgba(234, 57, 67, 0.2);
+}
+
+[data-theme='dark'] .time-toggles button {
+    border-color: #444;
+    color: #ccc;
+}
+
+[data-theme='dark'] .time-toggles button.active {
+    background-color: #333;
+    color: #fff;
+}
+
+[data-theme='dark'] .stats-list-card li {
+    border-color: #333;
+}
+
+[data-theme='dark'] .stats-list-card .label {
+    color: #bbb;
+}
+
+[data-theme='dark'] .gauge {
+    background: #444;
+}
+
+[data-theme='dark'] .gauge-cover {
+    background: #1e1e1e;
+    color: #fff;
+}

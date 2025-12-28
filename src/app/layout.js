@@ -11,16 +11,24 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Using CDN for remixicon if not installing package, mimicking original usage which might rely on index.html imports, checking that later. 
-                Original index.html was not checked for CDNs. But assuming package or CDN.
-                Safe bet: Add CDN link if we can, or just install package. 
-                I'll assume I need to install 'remixicon' or use CDN.
-            */}
         <link
           href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
           rel="stylesheet"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+               (function() {
+                 try {
+                   var localTheme = localStorage.getItem('theme');
+                   var theme = localTheme || 'dark';
+                   document.documentElement.setAttribute('data-theme', theme);
+                 } catch (e) {}
+               })();
+             `
+          }}
         />
       </head>
       <body>

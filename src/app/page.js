@@ -2,7 +2,8 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import "./Home.css";
 import { CoinContext } from "../context/CoinContext";
-import ChartModal from "../components/ChartModal";
+import { useRouter } from "next/navigation";
+
 
 const Home = () => {
   const { allCoin, currency } = useContext(CoinContext);
@@ -12,9 +13,9 @@ const Home = () => {
   const [favorites, setFavorites] = useState([]);
   const [sortCriteria, setSortCriteria] = useState("market_cap_rank");
   const [sortDirection, setSortDirection] = useState("asc");
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedCoin, setSelectedCoin] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const router = useRouter();
   const coinsPerPage = 10;
   const searchTimeoutRef = useRef(null);
 
@@ -75,13 +76,7 @@ const Home = () => {
   };
 
   const handleRowClick = (coinId) => {
-    setSelectedCoin(coinId);
-    setModalIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-    setSelectedCoin(null);
+    router.push(`/coin/${coinId}`);
   };
 
   const sortCoins = (criteria) => {
@@ -238,7 +233,7 @@ const Home = () => {
         <button className="next" onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages}>Next</button>
       </div>
 
-      <ChartModal isOpen={modalIsOpen} onRequestClose={closeModal} coinId={selectedCoin} />
+
     </div>
   );
 };
