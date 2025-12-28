@@ -1,3 +1,4 @@
+"use client";
 import { createContext, useEffect, useState } from "react";
 
 export const CoinContext = createContext();
@@ -57,4 +58,3 @@ const CoinContextProvider = (props) => {
 };
 
 export default CoinContextProvider;
-

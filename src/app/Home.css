@@ -1,0 +1,373 @@
+.home {
+    padding: 0px 10px;
+    padding-bottom: 100px;
+    color: var(--text);
+}
+
+.hero {
+    max-width: 600px;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+}
+
+.hero h2 {
+    font-size: max(4vw, 36px);
+}
+
+.hero p {
+    width: 75%;
+    color: var(--text);
+    /* Was #e3e3e3 */
+    line-height: 1.5;
+}
+
+.hero form {
+    padding: 8px;
+    width: 80%;
+    background-color: var(--input-bg);
+    border-radius: 30px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.hero input {
+    flex: 1;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    color: var(--text);
+    /* Was black */
+    background: transparent;
+}
+
+.hero button {
+    border: none;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    font-size: 16px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.crypto-table {
+    max-width: 800px;
+    margin: auto;
+    background: var(--card-bg);
+    border-radius: 20px;
+    color: var(--card-text);
+}
+
+.table-layout {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 2fr 1fr 1fr 1.5fr;
+    padding: 15px 20px;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+
+.market-cap {
+    text-align: right;
+}
+
+.table-layout:last-child {
+    border: none;
+}
+
+.table-layout div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.table-layout img {
+    width: 35px;
+}
+
+.table-layout .green {
+    color: rgb(0, 255, 76);
+    text-align: center;
+}
+
+.table-layout .red {
+    color: rgb(255, 0, 0);
+    text-align: center;
+}
+
+#coinlist {
+    background-color: var(--card-bg);
+}
+
+.table-layout button {
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    color: var(--card-text);
+}
+
+button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--text);
+}
+
+button.favorite i {
+    color: gold;
+}
+
+button i {
+    font-size: 1.2rem;
+}
+
+.form {
+    margin-top: 10px;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 2fr 1fr 1fr 1.5fr;
+    padding: 1rem;
+    font-weight: bold;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--card-text);
+}
+
+.table-header .market-cap {
+    text-align: right;
+}
+
+.table-header p {
+    margin: 0;
+}
+
+.table-header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px;
+    color: var(--card-text);
+}
+
+.sort-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+
+.sort-arrow.asc {
+    border-bottom: 5px solid var(--card-text);
+}
+
+.sort-arrow.desc {
+    border-top: 5px solid var(--card-text);
+}
+
+
+/* Pagination Controls */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-controls button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    color: var(--card-text);
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.pagination-controls button:hover {
+    background-color: var(--border-color);
+}
+
+.pagination-controls button:disabled {
+    background-color: var(--input-bg);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Page Numbers Styling */
+.page-numbers {
+    display: flex;
+    gap: 5px;
+}
+
+.page-numbers button {
+    padding: 8px 12px;
+    margin: 0 2px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.page-numbers button:hover {
+    background-color: var(--border-color);
+}
+
+/* Favorites Section */
+.favorites-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 10px;
+}
+
+.favorites-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--text);
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.fav-card {
+    background: var(--card-bg);
+    color: var(--card-text);
+    padding: 15px;
+    border-radius: 16px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fav-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.fav-card-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.fav-card-top img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.fav-card-top div {
+    flex: 1;
+}
+
+.fav-card-top h4 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.fav-card-top span {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.fav-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: gold;
+}
+
+.fav-card-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fav-card-price p {
+    font-weight: 600;
+}
+
+.fav-card-price span.green {
+    color: rgb(0, 255, 76);
+}
+
+.fav-card-price span.red {
+    color: rgb(255, 0, 0);
+}
+
+.page-numbers button.active-page {
+    background-color: var(--btn-bg);
+    color: #fff;
+    border-color: var(--btn-bg);
+}
+
+/* Media Queries for Responsive Pagination */
+@media (max-width: 768px) {
+    .pagination-controls {
+        flex-direction: column;
+    }
+
+    .page-numbers {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .page-numbers button {
+        margin-bottom: 5px;
+    }
+
+    .prev {
+        display: none;
+    }
+
+    .next {
+        display: none;
+    }
+}
+
+
+@media (max-width:768px) {
+    .table-layout {
+        grid-template-columns: 0.5fr 0.5fr 2.5fr 1fr 1fr;
+    }
+
+    .table-header {
+        grid-template-columns: 0.5fr 0.5fr 2.5fr 1fr 1fr;
+    }
+
+    .market-cap {
+        display: none;
+    }
+}
+
+@media (max-width:500px) {
+    .table-layout div img {
+        width: 25px;
+    }
+
+    .table-layout {
+        font-size: 13px;
+    }
+
+    .hero form input {
+        width: 100px;
+    }
+}

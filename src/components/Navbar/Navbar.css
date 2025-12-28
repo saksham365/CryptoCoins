@@ -3,14 +3,16 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    color: #ddd;
+    color: var(--navbar-text);
+    background-color: var(--navbar-bg);
+    border-bottom: 1px solid var(--border-color);
 }
 
-h1{
+h1 {
     width: max(12vw, 120px);
 }
 
-li{
+li {
     cursor: pointer;
 }
 
@@ -21,38 +23,51 @@ li{
 }
 
 .navbar select {
-    padding: 5px 8px;
-    border-radius: 20px;
-    border: 2px solid white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--input-bg);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1rem;
+    outline: none;
+}
+
+.navbar option {
+    background-color: var(--card-bg);
+    color: var(--text);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.theme-toggle {
     background: transparent;
-    color: white;
+    border: none;
+    color: var(--navbar-text);
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 
-.navbar option{
-    background-color: #0673A7;
-    color: white;
-}
-
-@media(max-width: 900px){
-    .navbar{
+@media(max-width: 900px) {
+    .navbar {
         padding: 20px 8%;
-    }
-
-    .navbar button{
-        gap: 8px;
-        padding: 8px 18px;
-        font-size: 14px;
-    }
-}
-
-@media(max-width: 768px){
-    .navbar{
-        padding: 20px 5%;
     }
 
     .navbar button {
         gap: 8px;
-        padding: 8px 18px;
-        font-size: 14px;
+        /* padding: 8px 18px;  This targeted all buttons, including theme toggle. careful */
+        /* font-size: 14px; */
     }
+}
+
+@media(max-width: 768px) {
+    .navbar {
+        padding: 20px 5%;
+    }
+
+    /* Specificity for nav-right children if needed */
 }
